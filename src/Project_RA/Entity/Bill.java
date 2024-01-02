@@ -96,20 +96,18 @@ public class Bill {
 
     public void inputDataBill(Scanner scanner, Boolean billType, String empIdCreate) {
         billCode = inputBillCode(scanner);
-        this.billType = inputBillType(scanner);
-        if(empIdCreate == null) {
-            this.empIdCreate = inputEmpIdCreate(scanner);
-        } else {
-            this.empIdCreate = empIdCreate;
-        }
+        this.billType = billType;
+        this.empIdCreate = empIdCreate;
         this.empIdAuth = inputEmpIdAuth(scanner);
     }
-    public void displayDataBill(){
+
+    public void displayDataBill() {
         System.out.printf("| %8d | %8s | %12s | %17s | %10s | %18s | %10s | %16s |\n",
                 this.billId, this.billCode, this.billType ? "Phiếu nhập" : "Phiếu xuất", this.empIdCreate,
                 this.created, this.empIdAuth, this.authDate, this.billStatus == 0 ? "Tạo phiếu" : (this.billStatus == 1 ? "Hủy phiếu" : "Duyệt phiếu"));
         System.out.println("----------------------------------------------------------------------------------------------------------------------------");
     }
+
     @Override
     public String toString() {
         return String.format("| %8d | %8s | %12s | %17s | %10s | %18s | %10s | %16s |\n" +
@@ -127,38 +125,6 @@ public class Bill {
                     return billCode;
                 } else {
                     System.err.println("Mã code không được bỏ trống, vui lòng nhập lại!");
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        } while (true);
-    }
-
-    public boolean inputBillType(Scanner scanner) {
-        System.out.println("Nhập vào loại phiếu nhập - xuất: ");
-        do {
-            try {
-                String billType = scanner.nextLine();
-                if (billType.equals("1") || billType.equals("0")) {
-                    return Boolean.parseBoolean(billType);
-                } else {
-                    System.err.println("Loại phiếu chỉ nhận giá trị 0 và 1 , Vui lòng nhập lại!");
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        } while (true);
-    }
-
-    public String inputEmpIdCreate(Scanner scanner) {
-        System.out.println("Nhập vào mã nhân viên nhập - xuất: ");
-        do {
-            try {
-                String empIdCreate = scanner.nextLine();
-                if (empIdCreate.trim().length() <= 5) {
-                    return empIdCreate;
-                } else {
-                    System.err.println("Mã nhân viên có từ 1 đến 5 ký tự, vui lòng nhập lại!");
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();

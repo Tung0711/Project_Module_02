@@ -1,6 +1,7 @@
 package Project_RA.Presentation;
 
 import Project_RA.Bussiness.LoginBus;
+import Project_RA.Entity.Account;
 
 import java.util.Scanner;
 
@@ -13,7 +14,7 @@ public class AdminMenu {
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_RESET = "\u001B[0m";
 
-    public static void displayAdmin(Scanner scanner) {
+    public static void displayAdmin(Scanner scanner, Account acc) {
         boolean isExit = true;
         do {
             System.out.println(ANSI_GREEN + "********** WAREHOUSE MANAGEMENT **********" + ANSI_RESET);
@@ -44,10 +45,10 @@ public class AdminMenu {
                     AccMenu.displayMenuAccount(scanner);
                     break;
                 case 4:
-                    ReceiptMenu.displayMenuReceipt(scanner);
+                    ReceiptMenu.displayMenuReceipt(scanner,acc);
                     break;
                 case 5:
-                    BillMenu.displayMenuBill(scanner);
+                    BillMenu.displayMenuBill(scanner,acc);
                     break;
                 case 6:
                     ReportMenu.displayMenuReport(scanner);

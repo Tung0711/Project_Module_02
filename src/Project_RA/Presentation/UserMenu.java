@@ -98,9 +98,9 @@ public class UserMenu {
     }
 
     public static void formatPrintBillDetail() {
-        System.out.println("----------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------");
         System.out.println(ANSI_YELLOW + "| Mã phiếu chi tiết | Mã phiếu xuất | Mã sản phẩm | Số lượng xuất | Giá xuất |" + ANSI_RESET);
-        System.out.println("----------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------");
     }
 
     public static void createReceipt(Scanner scanner, Account account) {

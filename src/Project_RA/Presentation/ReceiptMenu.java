@@ -4,6 +4,7 @@ import Project_RA.Bussiness.BillDetailBus;
 import Project_RA.Bussiness.IWarehouse;
 import Project_RA.Bussiness.BillBus;
 import Project_RA.Bussiness.ProductBus;
+import Project_RA.Entity.Account;
 import Project_RA.Entity.Bill;
 import Project_RA.Entity.Bill_Detail;
 import Project_RA.Entity.Product;
@@ -19,7 +20,7 @@ public class ReceiptMenu {
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_RESET = "\u001B[0m";
 
-    public static void displayMenuReceipt(Scanner scanner) {
+    public static void displayMenuReceipt(Scanner scanner, Account acc) {
         boolean isExit = true;
         do {
             System.out.println(ANSI_BLUE + "********** RECEIPT MANAGEMENT **********" + ANSI_RESET);
@@ -42,7 +43,7 @@ public class ReceiptMenu {
                     displayReceipt(scanner);
                     break;
                 case 2:
-                    createReceiptBill(scanner);
+                    createReceiptBill(scanner, acc);
                     break;
                 case 3:
                     inputIdUpdate(scanner);
@@ -70,11 +71,11 @@ public class ReceiptMenu {
         boolean isExit = true;
 
         do {
-            List<Bill> listBill = receiptBus.getAll(pageNumber);
+            List<Bill> listReceipt = receiptBus.getAll(pageNumber);
             formatPrintReceipt();
-            listBill.stream().forEach(System.out::println);
+            listReceipt.stream().forEach(System.out::println);
 
-            if (listBill.size() < 10) {
+            if (listReceipt.size() < 10) {
                 isExit = false;
             } else {
                 System.out.println("nhấn số 1 để xem thêm phiếu nhập, số 2 để thoát");
@@ -99,9 +100,9 @@ public class ReceiptMenu {
         } while (isExit);
     }
 
-    public static void createReceiptBill(Scanner scanner) {
+    public static void createReceiptBill(Scanner scanner, Account acc) {
         Bill bi = new Bill();
-        bi.inputDataBill(scanner, true, null);
+        bi.inputDataBill(scanner, true, acc.getEmpId());
         boolean resultCreate = receiptBus.create(bi);
         if (resultCreate) {
             System.out.println("Thêm mới phiếu nhập thành công");
@@ -151,9 +152,9 @@ public class ReceiptMenu {
     }
 
     public static void formatPrintBillDetail() {
-        System.out.println("----------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------");
         System.out.println(ANSI_CYAN + "| Mã phiếu chi tiết | Mã phiếu nhập | Mã sản phẩm | Số lượng nhập | Giá nhập |" + ANSI_RESET);
-        System.out.println("----------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------");
     }
 
     public static void inputIdUpdate(Scanner scanner) {
@@ -296,7 +297,7 @@ public class ReceiptMenu {
 
                 switch (choice) {
                     case 1:
-                        boolean isAcept = BillBus.BrowseBill(billId);
+                        boolean isAcept = BillBus.browseBill(billId);
                         if (isAcept) {
                             if (listDetail.size() > 0) {
                                 for (Bill_Detail detail : listDetail) {

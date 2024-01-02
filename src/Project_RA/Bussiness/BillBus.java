@@ -199,7 +199,7 @@ public class BillBus implements IWarehouse<Bill, Integer, String, Integer> {
         }
         return listBill;
     }
-    public static boolean BrowseBill(Integer integer) {
+    public static boolean browseBill(Integer integer) {
         Connection conn = ConnectionDB.openConnection();
         CallableStatement callSt = null;
         boolean result = false;

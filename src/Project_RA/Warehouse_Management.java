@@ -13,7 +13,7 @@ public class Warehouse_Management {
         Scanner scanner = new Scanner(System.in);
         if (account != null) {
             if (!account.isPermission()) {
-                AdminMenu.displayAdmin(scanner);
+                AdminMenu.displayAdmin(scanner, account);
             } else {
                 UserMenu.displayUser(scanner, account);
             }
@@ -40,7 +40,7 @@ public class Warehouse_Management {
             } else {
                 LoginBus.writeDataAccountToFile(account);
                 if (!account.isPermission()) {
-                    AdminMenu.displayAdmin(scanner);
+                    AdminMenu.displayAdmin(scanner, account);
                 } else {
                     UserMenu.displayUser(scanner, account);
                 }

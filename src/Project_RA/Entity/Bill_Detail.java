@@ -69,8 +69,8 @@ public class Bill_Detail {
 
     @Override
     public String toString() {
-        return String.format("| %17d | %13d | %11s | %13d |     %.2f     |\n" +
-                        "----------------------------------------------------------------------------------------------------------------------------",
+        return String.format("| %17d | %13d | %11s | %13d |  %.2f |\n" +
+                        "------------------------------------------------------------------------------",
                 this.billDetailId, this.billId, this.productId, this.quantity, this.price);
     }
 

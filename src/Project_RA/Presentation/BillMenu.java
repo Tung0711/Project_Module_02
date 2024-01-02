@@ -4,6 +4,7 @@ import Project_RA.Bussiness.BillBus;
 import Project_RA.Bussiness.BillDetailBus;
 import Project_RA.Bussiness.IWarehouse;
 import Project_RA.Bussiness.ProductBus;
+import Project_RA.Entity.Account;
 import Project_RA.Entity.Bill;
 import Project_RA.Entity.Bill_Detail;
 import Project_RA.Entity.Product;
@@ -17,7 +18,7 @@ public class BillMenu {
     public static IWarehouse billBus = new BillBus();
     public static BillDetailBus detailBus = new BillDetailBus();
 
-    public static void displayMenuBill(Scanner scanner) {
+    public static void displayMenuBill(Scanner scanner, Account acc) {
         boolean isExit = true;
         do {
             System.out.println(ANSI_YELLOW + "********** BILL MANAGEMENT **********" + ANSI_RESET);
@@ -40,7 +41,7 @@ public class BillMenu {
                     displayBill(scanner);
                     break;
                 case 2:
-                    createBill(scanner);
+                    createBill(scanner, acc);
                     break;
                 case 3:
                     inputIdUpdate(scanner);
@@ -68,7 +69,7 @@ public class BillMenu {
         boolean isExit = true;
 
         do {
-            List<Bill> listBill = billBus.getAll(pageNumber);
+            List<Bill> listBill = BillBus.getAllBill(pageNumber);
             formatPrintBill();
             listBill.stream().forEach(System.out::println);
 
@@ -97,9 +98,9 @@ public class BillMenu {
         } while (isExit);
     }
 
-    public static void createBill(Scanner scanner) {
+    public static void createBill(Scanner scanner, Account acc) {
         Bill bi = new Bill();
-        bi.inputDataBill(scanner, true, null);
+        bi.inputDataBill(scanner, false, acc.getEmpId());
         boolean resultCreate = billBus.create(bi);
         if (resultCreate) {
             System.out.println("Thêm mới phiếu xuất thành công");
@@ -116,7 +117,7 @@ public class BillMenu {
                             Bill_Detail detail = new Bill_Detail();
                             Bill bil = (Bill) billBus.findByName(bi.getBillCode());
                             detail.inputDataBillDetail(scanner, bil.getBillId());
-                            boolean resultBillDetail = billBus.create(detail);
+                            boolean resultBillDetail = detailBus.create(detail);
 
                             if (resultBillDetail) {
                                 System.out.println("Thêm mới chi tiết phiếu thành công!");
@@ -149,9 +150,9 @@ public class BillMenu {
     }
 
     public static void formatPrintBillDetail() {
-        System.out.println("----------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------");
         System.out.println(ANSI_YELLOW + "| Mã phiếu chi tiết | Mã phiếu xuất | Mã sản phẩm | Số lượng xuất | Giá xuất |" + ANSI_RESET);
-        System.out.println("----------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------");
     }
 
     public static void inputIdUpdate(Scanner scanner) {
@@ -276,7 +277,7 @@ public class BillMenu {
     public static void acceptBill(Scanner scanner, int billId) {
         Bill bi = (Bill) billBus.findById(billId);
 
-        if (bi != null && bi.isBillType() == true) {
+        if (bi != null && bi.isBillType() == false) {
             System.out.println("Thông tin phiếu bạn muốn duyệt:");
             formatPrintBill();
             bi.displayDataBill();
@@ -294,7 +295,7 @@ public class BillMenu {
 
                 switch (choice) {
                     case 1:
-                        boolean isAcept = BillBus.BrowseBill(billId);
+                        boolean isAcept = BillBus.browseBill(billId);
                         if (isAcept) {
                             if (listDetail.size() > 0) {
                                 for (Bill_Detail detail : listDetail) {
