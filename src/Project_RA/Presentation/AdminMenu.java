@@ -2,7 +2,6 @@ package Project_RA.Presentation;
 
 import Project_RA.Bussiness.LoginBus;
 import Project_RA.Entity.Account;
-
 import java.util.Scanner;
 
 public class AdminMenu {

@@ -108,7 +108,7 @@ public class Product {
                         System.err.println("Mã sản phẩm đã tồn tại, Vui lòng nhập lại");
                     }
                 } else {
-                    System.err.println("Mã sản phẩm có từ 1 đến 5 ký tự, vui lòng nhập lại!");
+                    System.err.println("Mã sản phẩm có ít hơn hoặc bằng 5 ký tự, vui lòng nhập lại!");
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -185,20 +185,20 @@ public class Product {
         } while (true);
     }
 
-    public void updateData(Scanner scanner, IWarehouse prouductBus) {
+    public void updateData(Scanner scanner, IWarehouse productBus) {
         boolean isExit = true;
         do {
             System.out.println("************ Cập nhật thông tin sản phẩm ************");
-            System.out.println("1. Cập nhât tên sản phẩm");
-            System.out.println("2. Cập nhât tên nhà sản xuất");
-            System.out.println("3. Cập nhât lô sản phẩm");
+            System.out.println("1. Cập nhật tên sản phẩm");
+            System.out.println("2. Cập nhật tên nhà sản xuất");
+            System.out.println("3. Cập nhật lô sản phẩm");
             System.out.println("4. Thoát");
-            System.out.println("Lựa chon của bạn:");
+            System.out.println("Lựa chọn của bạn:");
             try {
                 int choice = Integer.parseInt(scanner.nextLine());
                 switch (choice) {
                     case 1:
-                        this.productName = inputProductName(scanner, prouductBus);
+                        this.productName = inputProductName(scanner, productBus);
                         break;
                     case 2:
                         this.manufacturer = inputManufacturer(scanner);
@@ -210,10 +210,10 @@ public class Product {
                         isExit = false;
                         break;
                     default:
-                        System.out.println("Nhập lựa chọn từ 1-4!");
+                        System.err.println("Nhập lựa chọn từ 1-4!");
                 }
             } catch (NumberFormatException e) {
-                System.err.println("Vui lòng nhâp số nguyên!");
+                System.err.println("Vui lòng nhập số nguyên!");
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
             }
@@ -226,7 +226,7 @@ public class Product {
             System.out.println("************ Cập nhật trạng thái sản phẩm ************");
             System.out.println("1. Hoạt động");
             System.out.println("2. Không hoạt động");
-            System.out.println("Lựa chon của bạn:");
+            System.out.println("Lựa chọn của bạn:");
 
             try {
                 int choice = Integer.parseInt(scanner.nextLine());
@@ -241,10 +241,10 @@ public class Product {
                         isExit = false;
                         break;
                     default:
-                        System.out.println("Nhập lựa chọn từ 1 trong 2!");
+                        System.err.println("Nhập lựa chọn từ 1-2!");
                 }
             } catch (NumberFormatException e) {
-                System.err.println("Vui lòng nhâp số nguyên!");
+                System.err.println("Vui lòng nhập số nguyên!");
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
             }

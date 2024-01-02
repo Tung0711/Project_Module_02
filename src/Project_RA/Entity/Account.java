@@ -182,7 +182,7 @@ public class Account implements Serializable {
             System.out.println("************ Cập nhật trạng thái tài khoản ************");
             System.out.println("1. Hoạt động");
             System.out.println("2. Khóa");
-            System.out.println("Lựa chon của bạn:");
+            System.out.println("Lựa chọn của bạn:");
 
             try {
                 int choice = Integer.parseInt(scanner.nextLine());
@@ -200,7 +200,7 @@ public class Account implements Serializable {
                         System.out.println("Nhập lựa chọn từ 1 trong 2!");
                 }
             } catch (NumberFormatException e) {
-                System.err.println("Vui lòng nhâp số nguyên!");
+                System.err.println("Vui lòng nhập số nguyên!");
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
             }

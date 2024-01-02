@@ -1,8 +1,5 @@
 package Project_RA.Entity;
 
-import Project_RA.Bussiness.IWarehouse;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -95,7 +92,7 @@ public class Bill {
     }
 
     public void inputDataBill(Scanner scanner, Boolean billType, String empIdCreate) {
-        billCode = inputBillCode(scanner);
+        this.billCode = inputBillCode(scanner);
         this.billType = billType;
         this.empIdCreate = empIdCreate;
         this.empIdAuth = inputEmpIdAuth(scanner);
@@ -181,7 +178,7 @@ public class Bill {
                         System.err.println("Vui lòng chọn giá trị từ 1 đến 5!");
                 }
             } catch (NumberFormatException e) {
-                System.err.println("Vui lòng nhâp số nguyên!");
+                System.err.println("Vui lòng nhập số nguyên!");
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
             }
@@ -192,9 +189,9 @@ public class Bill {
         boolean isExit = true;
         do {
             System.out.println("************ Cập nhật trạng thái ************");
-            System.out.println("1. Tạo");
+            System.out.println("1. Tạo phiếu");
             System.out.println("2. Hủy phiếu");
-            System.out.println("lựa chon của bạn:");
+            System.out.println("lựa chọn của bạn:");
 
             try {
                 int choice = Integer.parseInt(scanner.nextLine());
@@ -209,10 +206,10 @@ public class Bill {
                         isExit = false;
                         break;
                     default:
-                        System.err.println("Lựa chọn không phù hợp,vui lòng nhập lại!");
+                        System.err.println("Lựa chọn không phù hợp, vui lòng nhập lại!");
                 }
             } catch (NumberFormatException e) {
-                System.err.println("Vui lòng nhâp số nguyên!");
+                System.err.println("Vui lòng nhập số nguyên!");
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

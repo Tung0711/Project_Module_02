@@ -2,7 +2,6 @@ package Project_RA.Bussiness;
 
 import Project_RA.Entity.Account;
 import Project_RA.Util.ConnectionDB;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -212,5 +211,4 @@ public class AccountBus implements IWarehouse<Account, Integer, String, Integer>
         }
         return listAcc;
     }
-
 }

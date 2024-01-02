@@ -199,7 +199,7 @@ public class BillBus implements IWarehouse<Bill, Integer, String, Integer> {
         }
         return listBill;
     }
-    public static boolean browseBill(Integer integer) {
+    public static boolean browseBill(Integer in) {
         Connection conn = ConnectionDB.openConnection();
         CallableStatement callSt = null;
         boolean result = false;
@@ -207,7 +207,7 @@ public class BillBus implements IWarehouse<Bill, Integer, String, Integer> {
         try {
             conn.setAutoCommit(false);
             callSt = conn.prepareCall("{call Browse_bill(?)}");
-            callSt.setInt(1, integer);
+            callSt.setInt(1, in);
             callSt.executeUpdate();
             conn.commit();
             result = true;
@@ -255,29 +255,29 @@ public class BillBus implements IWarehouse<Bill, Integer, String, Integer> {
         }
         return listBill;
     }
-    public static List<Bill> getAllReceiptByStatus(Integer integer, String str) {
+    public static List<Bill> getAllReceiptByStatus(Integer in, String str) {
         Connection conn = ConnectionDB.openConnection();
         CallableStatement callSt = null;
         List<Bill> listBill = null;
 
         try {
             callSt = conn.prepareCall("{call get_list_receipt_by_status(?,?)}");
-            callSt.setInt(1, integer);
+            callSt.setInt(1, in);
             callSt.setString(2, str);
             ResultSet rs = callSt.executeQuery();
             listBill = new ArrayList<>();
 
             while (rs.next()) {
-                Bill bill = new Bill();
-                bill.setBillId(rs.getInt("Bill_Id"));
-                bill.setBillCode(rs.getString("Bill_Code"));
-                bill.setBillType(rs.getBoolean("Bill_Type"));
-                bill.setEmpIdCreate(rs.getString("Emp_id_created"));
-                bill.setCreated(rs.getDate("Created"));
-                bill.setEmpIdAuth(rs.getString("Emp_id_auth"));
-                bill.setAuthDate(rs.getDate("Auth_date"));
-                bill.setBillStatus(rs.getInt("Bill_Status"));
-                listBill.add(bill);
+                Bill bi = new Bill();
+                bi.setBillId(rs.getInt("Bill_Id"));
+                bi.setBillCode(rs.getString("Bill_Code"));
+                bi.setBillType(rs.getBoolean("Bill_Type"));
+                bi.setEmpIdCreate(rs.getString("Emp_id_created"));
+                bi.setCreated(rs.getDate("Created"));
+                bi.setEmpIdAuth(rs.getString("Emp_id_auth"));
+                bi.setAuthDate(rs.getDate("Auth_date"));
+                bi.setBillStatus(rs.getInt("Bill_Status"));
+                listBill.add(bi);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -289,29 +289,29 @@ public class BillBus implements IWarehouse<Bill, Integer, String, Integer> {
         return listBill;
     }
 
-    public static List<Bill> getAllBillByStatus(Integer integer, String s) {
+    public static List<Bill> getAllBillByStatus(Integer in, String s) {
         Connection conn = ConnectionDB.openConnection();
         CallableStatement callSt = null;
         List<Bill> listBill = null;
 
         try {
             callSt = conn.prepareCall("{call get_list_bill_by_status(?,?)}");
-            callSt.setInt(1, integer);
+            callSt.setInt(1, in);
             callSt.setString(2, s);
             ResultSet rs = callSt.executeQuery();
             listBill = new ArrayList<>();
 
             while (rs.next()) {
-                Bill bill = new Bill();
-                bill.setBillId(rs.getInt("Bill_Id"));
-                bill.setBillCode(rs.getString("Bill_Code"));
-                bill.setBillType(rs.getBoolean("Bill_Type"));
-                bill.setEmpIdCreate(rs.getString("Emp_id_created"));
-                bill.setCreated(rs.getDate("Created"));
-                bill.setEmpIdAuth(rs.getString("Emp_id_auth"));
-                bill.setAuthDate(rs.getDate("Auth_date"));
-                bill.setBillStatus(rs.getInt("Bill_Status"));
-                listBill.add(bill);
+                Bill bi = new Bill();
+                bi.setBillId(rs.getInt("Bill_Id"));
+                bi.setBillCode(rs.getString("Bill_Code"));
+                bi.setBillType(rs.getBoolean("Bill_Type"));
+                bi.setEmpIdCreate(rs.getString("Emp_id_created"));
+                bi.setCreated(rs.getDate("Created"));
+                bi.setEmpIdAuth(rs.getString("Emp_id_auth"));
+                bi.setAuthDate(rs.getDate("Auth_date"));
+                bi.setBillStatus(rs.getInt("Bill_Status"));
+                listBill.add(bi);
             }
         } catch (SQLException e) {
             e.printStackTrace();

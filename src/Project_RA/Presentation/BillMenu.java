@@ -22,7 +22,7 @@ public class BillMenu {
         boolean isExit = true;
         do {
             System.out.println(ANSI_YELLOW + "********** BILL MANAGEMENT **********" + ANSI_RESET);
-            System.out.println("1. Danh sách phiếp xuất");
+            System.out.println("1. Danh sách phiếu xuất");
             System.out.println(ANSI_CYAN + "2. Tạo phiếu xuất" + ANSI_RESET);
             System.out.println("3. Cập nhật thông tin phiếu xuất");
             System.out.println(ANSI_BLUE + "4. Chi tiết phiếu xuất" + ANSI_RESET);
@@ -76,7 +76,7 @@ public class BillMenu {
             if (listBill.size() < 10) {
                 isExit = false;
             } else {
-                System.out.println("nhấn số 1 để xem thêm phiếu xuất, số 2 để thoát");
+                System.out.println("Bấm số 1 để xem thêm phiếu xuất, số 2 để thoát");
                 try {
                     int choice = Integer.parseInt(scanner.nextLine());
                     switch (choice) {
@@ -90,7 +90,7 @@ public class BillMenu {
                             System.err.println("Lựa chọn không phù hợp, vui lòng nhập lại!");
                     }
                 } catch (NumberFormatException e) {
-                    System.err.println("vui lòng nhập số nguyên!");
+                    System.err.println("Vui lòng nhập số nguyên!");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -224,10 +224,10 @@ public class BillMenu {
             }
 
             if (isExists) {
-                Bill_Detail billDetailUpdate = detailBus.findById(updateBillDetailID);
-                billDetailUpdate.updateDataDetail(scanner);
-                boolean resultbillDetail = detailBus.update(billDetailUpdate);
-                if (resultbillDetail) {
+                Bill_Detail detailUpdate = detailBus.findById(updateBillDetailID);
+                detailUpdate.updateDataDetail(scanner);
+                boolean resultDetail = detailBus.update(detailUpdate);
+                if (resultDetail) {
                     System.out.println("Cập nhật chi tiết phiếu thành công!");
                 } else {
                     System.err.println("Cập nhật chi tiết phiếu thất bại!");
@@ -250,13 +250,13 @@ public class BillMenu {
             Bill bi = (Bill) billBus.findById(billId);
 
             if (bi != null && bi.isBillType() == true) {
-                List<Bill_Detail> listBillDetail = detailBus.findByBillId(billId);
-                listBillDetail.stream().forEach(System.out::println);
+                List<Bill_Detail> listDetail = detailBus.findByBillId(billId);
+                listDetail.stream().forEach(System.out::println);
             } else {
                 System.err.println("Không tồn tại mã phiếu xuất!");
             }
         } catch (NumberFormatException e) {
-            System.err.println("Vui lòng nhâp số nguyên!");
+            System.err.println("Vui lòng nhập số nguyên!");
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }
@@ -268,7 +268,7 @@ public class BillMenu {
             int billId = Integer.parseInt(scanner.nextLine());
             acceptBill(scanner, billId);
         } catch (NumberFormatException e) {
-            System.err.println("Vui lòng nhâp số nguyên!");
+            System.err.println("Vui lòng nhập số nguyên!");
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }
@@ -314,13 +314,13 @@ public class BillMenu {
                         isExit = false;
                         break;
                     default:
-                        System.out.println("vui lòng chọn 1 trong 2!");
+                        System.out.println("Vui lòng chọn 1 trong 2!");
                 }
 
             } while (isExit);
 
         } else {
-            System.err.println("không tồn tại phiếu xuất!");
+            System.err.println("Không tồn tại phiếu xuất!");
         }
     }
 
@@ -328,22 +328,22 @@ public class BillMenu {
         System.out.println("Mã phiếu bạn tìm kiếm:");
         try {
             int billId = Integer.parseInt(scanner.nextLine());
-            Bill bill = (Bill) billBus.findById(billId);
+            Bill bi = (Bill) billBus.findById(billId);
 
-            if (bill != null && bill.isBillType() == true) {
+            if (bi != null && bi.isBillType() == true) {
                 System.out.println("Thông tin phiếu bạn muốn tìm kiếm:");
                 formatPrintBill();
-                bill.displayDataBill();
+                bi.displayDataBill();
                 System.out.println("Thông tin chi tiết phiếu:");
                 List<Bill_Detail> listDetail = detailBus.findByBillId(billId);
                 listDetail.stream().forEach(System.out::println);
 
                 boolean isExit = true;
                 do {
-                    System.out.println("******************MENU****************\n" +
-                            "1. Cập nhật thông tin phiếu xuất\n" +
-                            "2. Duyệt phiếu xuất\n" +
-                            "3. Thoát");
+                    System.out.println("****************** MENU ****************");
+                    System.out.println("1. Cập nhật thông tin phiếu xuất");
+                    System.out.println("2. Duyệt phiếu xuất");
+                    System.out.println("3. Thoát");
                     System.out.println("lựa chọn của bạn:");
 
                     try {
@@ -360,20 +360,20 @@ public class BillMenu {
                                 isExit = false;
                                 break;
                             default:
-                                System.err.println("vui lòng chọn từ 1 - 3!");
+                                System.err.println("Vui lòng chọn từ 1 - 3!");
                         }
                     } catch (NumberFormatException e) {
-                        System.err.println("vui lòng nhập số nguyên!");
+                        System.err.println("Vui lòng nhập số nguyên!");
                     } catch (Exception ex) {
                         System.err.println(ex.getMessage());
                     }
                 } while (isExit);
             } else {
-                System.err.println("không tìm thấy phiếu xuất!");
+                System.err.println("Không tìm thấy phiếu xuất!");
             }
 
         } catch (NumberFormatException e) {
-            System.err.println("vui lòng nhập số nguyên!");
+            System.err.println("Vui lòng nhập số nguyên!");
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }

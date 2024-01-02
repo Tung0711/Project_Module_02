@@ -2,7 +2,6 @@ package Project_RA.Bussiness;
 
 import Project_RA.Entity.Product;
 import Project_RA.Util.ConnectionDB;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -189,15 +188,15 @@ public class ProductBus implements IWarehouse<Product, String, String, Integer> 
         }
         return listpro;
     }
-    public static void updateQuantityProduct(String s, Integer Integer) {
+    public static void updateQuantityProduct(String str, Integer in) {
         Connection conn = ConnectionDB.openConnection();
         CallableStatement callSt = null;
 
         try {
             conn.setAutoCommit(false);
             callSt = conn.prepareCall("{call quantityProduct(?,?)}");
-            callSt.setString(1, s);
-            callSt.setInt(2, Integer);
+            callSt.setString(1, str);
+            callSt.setInt(2, in);
             callSt.executeUpdate();
             conn.commit();
         } catch (Exception ex) {

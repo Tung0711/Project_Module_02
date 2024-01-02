@@ -3,7 +3,6 @@ package Project_RA.Presentation;
 import Project_RA.Bussiness.AccountBus;
 import Project_RA.Bussiness.IWarehouse;
 import Project_RA.Entity.Account;
-
 import java.util.List;
 import java.util.Scanner;
 
@@ -73,7 +72,7 @@ public class AccMenu {
             if (listAcc.size() < 10) {
                 isExit = false;
             } else {
-                System.out.println("nhấn số 1 để xem thêm tài khoản, số 2 để thoát");
+                System.out.println("Bấm số 1 để xem thêm tài khoản, số 2 để thoát");
                 try {
                     int choice = Integer.parseInt(scanner.nextLine());
                     switch (choice) {
@@ -84,10 +83,10 @@ public class AccMenu {
                             isExit = false;
                             break;
                         default:
-                            System.out.println("Lựa chọn không phù hợp, vui lòng nhập lại!");
+                            System.err.println("Lựa chọn không phù hợp, vui lòng nhập lại!");
                     }
                 } catch (NumberFormatException e) {
-                    System.err.println("vui lòng nhập số nguyên!");
+                    System.err.println("Vui lòng nhập số nguyên!");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -163,7 +162,7 @@ public class AccMenu {
                     System.err.println("Mã tài khoản không tồn tại!");
                 }
             } else {
-                System.err.println("Mã tài khoản phải là số lớn hơn 0, vui lòng nhập lại!");
+                System.err.println("Mã tài khoản phải khác 0, vui lòng nhập lại!");
             }
         } catch (NumberFormatException e) {
             System.err.println("Mã tài khoản là số nguyên, vui lòng nhập lại!");

@@ -251,10 +251,10 @@ public class Employee {
                         isExit = false;
                         break;
                     default:
-                        System.out.println("Nhập lựa chọn từ 1-6!");
+                        System.err.println("Nhập lựa chọn từ 1-6!");
                 }
             } catch (NumberFormatException e) {
-                System.err.println("Vui lòng nhâp số nguyên!");
+                System.err.println("Vui lòng nhập số nguyên!");
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
             }
@@ -268,7 +268,7 @@ public class Employee {
             System.out.println("1. Hoạt động");
             System.out.println("2. Nghỉ chế độ");
             System.out.println("3. Nghỉ việc");
-            System.out.println("Lựa chon của bạn:");
+            System.out.println("Lựa chọn của bạn:");
 
             try {
                 int choice = Integer.parseInt(scanner.nextLine());
@@ -287,10 +287,10 @@ public class Employee {
                         isExit = false;
                         break;
                     default:
-                        System.out.println("Nhập lựa chọn từ 1 trong 2!");
+                        System.err.println("Nhập lựa chọn từ 1 trong 2!");
                 }
             } catch (NumberFormatException e) {
-                System.err.println("Vui lòng nhâp số nguyên!");
+                System.err.println("Vui lòng nhập số nguyên!");
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
             }

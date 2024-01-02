@@ -135,7 +135,7 @@ public class Bill_Detail {
             System.out.println("2. Cập nhật số lượng sản phẩm");
             System.out.println("3. Cập nhật giá sản phẩm");
             System.out.println("4. Thoát");
-            System.out.println("Lựa chon của bạn:");
+            System.out.println("Lựa chọn của bạn:");
 
             try {
                 int choice = Integer.parseInt(scanner.nextLine());
@@ -154,10 +154,10 @@ public class Bill_Detail {
                         isExit = false;
                         break;
                     default:
-                        System.out.println("nhập lựa chọn từ 1-4!");
+                        System.err.println("Nhập lựa chọn từ 1-4!");
                 }
             } catch (NumberFormatException e) {
-                System.err.println("vui lòng nhâp số nguyên!");
+                System.err.println("Vui lòng nhập số nguyên!");
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
             }

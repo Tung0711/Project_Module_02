@@ -2,14 +2,11 @@ package Project_RA.Bussiness;
 
 import Project_RA.Entity.Account;
 import Project_RA.Util.ConnectionDB;
-
-
 import java.io.*;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 
 public class LoginBus {
 

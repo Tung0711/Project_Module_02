@@ -5,10 +5,8 @@ import Project_RA.Bussiness.EmployeeBus;
 import Project_RA.Bussiness.IWarehouse;
 import Project_RA.Entity.Account;
 import Project_RA.Entity.Employee;
-
 import java.util.List;
 import java.util.Scanner;
-
 import static Project_RA.Presentation.AccMenu.accBus;
 
 public class EmployeeMenu {
@@ -93,7 +91,7 @@ public class EmployeeMenu {
             if (listEmp.size() < 10) {
                 isExit = false;
             } else {
-                System.out.println("nhấn số 1 để xem thêm nhân viên, số 2 để thoát");
+                System.out.println("Bấm số 1 để xem thêm nhân viên, số 2 để thoát");
                 try {
                     int choice = Integer.parseInt(scanner.nextLine());
                     switch (choice) {
@@ -107,7 +105,7 @@ public class EmployeeMenu {
                             System.out.println("Lựa chọn không phù hợp, vui lòng nhập lại!");
                     }
                 } catch (NumberFormatException e) {
-                    System.err.println("vui lòng nhập số nguyên!");
+                    System.err.println("Vui lòng nhập số nguyên!");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

@@ -4,7 +4,6 @@ import Project_RA.Bussiness.LoginBus;
 import Project_RA.Entity.Account;
 import Project_RA.Presentation.AdminMenu;
 import Project_RA.Presentation.UserMenu;
-
 import java.util.Scanner;
 
 public class Warehouse_Management {

@@ -1,7 +1,5 @@
 package Project_RA.Bussiness;
 
-import Project_RA.Entity.Bill_Detail;
-
 import java.util.List;
 
 public interface IWarehouse<T, K, S, I> {
