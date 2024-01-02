@@ -14,21 +14,21 @@ import java.util.Scanner;
 import static Project_RA.Presentation.ProductMenu.*;
 
 public class BillMenu {
-    private static IWarehouse billBus = new BillBus();
+    public static IWarehouse billBus = new BillBus();
     public static BillDetailBus detailBus = new BillDetailBus();
 
     public static void displayMenuBill(Scanner scanner) {
         boolean isExit = true;
         do {
-            System.out.println("********** BILL MANAGEMENT **********");
+            System.out.println(ANSI_YELLOW + "********** BILL MANAGEMENT **********" + ANSI_RESET);
             System.out.println("1. Danh sách phiếp xuất");
-            System.out.println("2. Tạo phiếu xuất");
+            System.out.println(ANSI_CYAN + "2. Tạo phiếu xuất" + ANSI_RESET);
             System.out.println("3. Cập nhật thông tin phiếu xuất");
-            System.out.println("4. Chi tiết phiếu xuất");
+            System.out.println(ANSI_BLUE + "4. Chi tiết phiếu xuất" + ANSI_RESET);
             System.out.println("5. Duyệt phiếu xuất");
-            System.out.println("6. Tìm kiếm phiếu xuất");
+            System.out.println(ANSI_GREEN + "6. Tìm kiếm phiếu xuất" + ANSI_RESET);
             System.out.println("7. Thoát");
-            System.out.println("Lựa chọn của bạn: ");
+            System.out.println(ANSI_RED + "Lựa chọn của bạn: " + ANSI_RESET);
             int choice = 0;
             try {
                 choice = Integer.parseInt(scanner.nextLine());
@@ -99,7 +99,7 @@ public class BillMenu {
 
     public static void createBill(Scanner scanner) {
         Bill bi = new Bill();
-        bi.inputDataBill(scanner);
+        bi.inputDataBill(scanner, true, null);
         boolean resultCreate = billBus.create(bi);
         if (resultCreate) {
             System.out.println("Thêm mới phiếu xuất thành công");

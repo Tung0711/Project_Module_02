@@ -15,7 +15,7 @@ public class Warehouse_Management {
             if (!account.isPermission()) {
                 AdminMenu.displayAdmin(scanner);
             } else {
-                UserMenu.displayUser(scanner);
+                UserMenu.displayUser(scanner, account);
             }
             inputLogin(scanner, account);
         } else {
@@ -42,7 +42,7 @@ public class Warehouse_Management {
                 if (!account.isPermission()) {
                     AdminMenu.displayAdmin(scanner);
                 } else {
-                    UserMenu.displayUser(scanner);
+                    UserMenu.displayUser(scanner, account);
                 }
             }
         } while (true);
