@@ -300,7 +300,7 @@ public class BillMenu {
                             if (listDetail.size() > 0) {
                                 for (Bill_Detail detail : listDetail) {
                                     Product pro = (Product) productBus.findById(detail.getProductId());
-                                    int newQuantityProduct = detail.getQuantity() + pro.getQuantity();
+                                    int newQuantityProduct = detail.getQuantity() - pro.getQuantity();
                                     ProductBus.updateQuantityProduct(detail.getProductId(), newQuantityProduct);
                                 }
                             }

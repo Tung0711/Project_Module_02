@@ -6,8 +6,7 @@ import Project_RA.Entity.Account;
 import Project_RA.Entity.Bill;
 import Project_RA.Entity.Bill_Detail;
 
-import static Project_RA.Presentation.ProductMenu.ANSI_RESET;
-import static Project_RA.Presentation.ProductMenu.ANSI_YELLOW;
+import static Project_RA.Presentation.ProductMenu.*;
 import static Project_RA.Presentation.ReceiptMenu.receiptBus;
 import static Project_RA.Presentation.BillMenu.billBus;
 import static Project_RA.Presentation.BillMenu.detailBus;
@@ -19,18 +18,18 @@ public class UserMenu {
     public static void displayUser(Scanner scanner, Account acc) {
         boolean isExit = true;
         do {
-            System.out.println("********** WAREHOUSE MANAGEMENT **********");
-            System.out.println("1. Danh sách phiếu nhập theo trạng thái");
+            System.out.println(ANSI_GREEN + "********** WAREHOUSE MANAGEMENT **********" + ANSI_RESET);
+            System.out.println(ANSI_YELLOW + "1. Danh sách phiếu nhập theo trạng thái" + ANSI_RESET);
             System.out.println("2. Tạo phiếu nhập");
-            System.out.println("3. Cập nhật phiếu nhập");
+            System.out.println(ANSI_CYAN + "3. Cập nhật phiếu nhập" + ANSI_RESET);
             System.out.println("4. Tìm kiếm phiếu nhập");
-            System.out.println("5. Danh sách phiếu xuất theo trạng thái");
+            System.out.println(ANSI_BLUE + "5. Danh sách phiếu xuất theo trạng thái" + ANSI_RESET);
             System.out.println("6. Tạo phiếu xuất");
-            System.out.println("7. Cập nhật phiếu xuất");
+            System.out.println(ANSI_RED + "7. Cập nhật phiếu xuất" + ANSI_RESET);
             System.out.println("8. Tìm kiếm phiếu xuất");
-            System.out.println("9. Thoát");
+            System.out.println(ANSI_PURPLE + "9. Thoát" + ANSI_RESET);
             System.out.println("10. Đăng xuất");
-            System.out.println("Lựa chọn của bạn: ");
+            System.out.println(ANSI_CYAN + "Lựa chọn của bạn: " + ANSI_RESET);
             int choice = 0;
             try {
                 choice = Integer.parseInt(scanner.nextLine());
@@ -162,7 +161,7 @@ public class UserMenu {
         Bill bi = (Bill) receiptBus.findById(billId);
 
         if (bi != null && bi.isBillType() == true) {
-            if (bi.getEmpIdCreate() == acc.getEmpId()) {
+            if (bi.getEmpIdCreate().equals(acc.getEmpId())) {
                 if (bi.getBillStatus() == 0 || bi.getBillStatus() == 1) {
                     bi.updateDataBill(scanner);
                     boolean result = receiptBus.update(bi);
@@ -247,7 +246,7 @@ public class UserMenu {
             Bill bi = (Bill) receiptBus.findById(billId);
 
             if (bi != null && bi.isBillType() == true) {
-                if (bi.getEmpIdCreate() == acc.getEmpId()) {
+                if (bi.getEmpIdCreate().equals(acc.getEmpId())) {
                     System.out.println("Thông tin phiếu bạn muốn tìm kiếm:");
                     formatPrintBill();
                     bi.displayDataBill();
@@ -344,7 +343,7 @@ public class UserMenu {
         Bill bi = (Bill) billBus.findById(billId);
 
         if (bi != null && bi.isBillType() == false) {
-            if (bi.getEmpIdCreate() == acc.getEmpId()) {
+            if (bi.getEmpIdCreate().equals(acc.getEmpId())) {
                 if (bi.getBillStatus() == 0 || bi.getBillStatus() == 1) {
                     bi.updateDataBill(scanner);
                     boolean result = billBus.update(bi);
@@ -432,7 +431,7 @@ public class UserMenu {
             Bill bi = (Bill) billBus.findById(billId);
 
             if (bi != null && bi.isBillType() == false) {
-                if (bi.getEmpIdCreate() == acc.getEmpId()) {
+                if (bi.getEmpIdCreate().equals(acc.getEmpId())) {
                     System.out.println("Thông tin phiếu bạn muốn tìm kiếm:");
                     formatPrintBill();
                     bi.displayDataBill();

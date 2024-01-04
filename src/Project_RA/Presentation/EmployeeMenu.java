@@ -7,6 +7,7 @@ import Project_RA.Entity.Account;
 import Project_RA.Entity.Employee;
 import java.util.List;
 import java.util.Scanner;
+
 import static Project_RA.Presentation.AccMenu.accBus;
 
 public class EmployeeMenu {
@@ -142,7 +143,6 @@ public class EmployeeMenu {
         boolean isExit = true;
         do {
             List<Employee> listEmp = empBus.search(find, pageNumber);
-
             if (listEmp.isEmpty()) {
                 System.err.println("Nhân viên không tồn tại!");
             } else {
@@ -188,12 +188,14 @@ public class EmployeeMenu {
                     System.out.println("Cập nhật thành công!");
                     if (emp.getEmpStatus() == 1 || emp.getEmpStatus() == 2) {
                         Account acc = AccountBus.findByEmpId(emp.getEmpId());
-                        acc.setAccStatus(false);
-                        boolean resultAcc = accBus.update(acc);
-                        if (resultAcc) {
-                            System.out.println("cập nhật trạng thái tài khoản thành công!");
-                        } else {
-                            System.err.println("cập nhật trạng thái tài khoản thất bại!");
+                        if (acc != null) {
+                            acc.setAccStatus(false);
+                            boolean resultAcc = accBus.update(acc);
+                            if (resultAcc) {
+                                System.out.println("cập nhật trạng thái tài khoản thành công!");
+                            } else {
+                                System.err.println("cập nhật trạng thái tài khoản thất bại!");
+                            }
                         }
                     }
                 } else {

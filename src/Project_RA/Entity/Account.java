@@ -85,7 +85,7 @@ public class Account implements Serializable {
     public String toString() {
         return String.format("| %12d | %13s | %10s | %15s | %12s | %20s |\n" +
                         "-----------------------------------------------------------------------------------------------------",
-                this.accId, this.userName, this.password, this.permission ? "Admin" : "User", this.empId, this.accStatus ? "Hoạt động" : "Bị khóa");
+                this.accId, this.userName, this.password, this.permission ? "User" : "Admin", this.empId, this.accStatus ? "Hoạt động" : "Bị khóa");
     }
 
     public String inputUserName(Scanner scanner, IWarehouse accBus) {
